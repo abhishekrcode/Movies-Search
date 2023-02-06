@@ -2,7 +2,7 @@ import movies from "../reducer";
 
 //action type
 export const  ADD_MOVIES = 'ADD_MOVIES';
-export const ADD_FAVOURITE ='ADD_FAVOURITE';
+export const ADD_FAVOURITES ='ADD_FAVOURITE';
 export const UNFAVOURITE ='UNFAVOURITE';
 
 
@@ -17,9 +17,14 @@ export function addMovies (movies){
 
 export function addFavourite(movie){
     return {
-        type:ADD_FAVOURITE,
+        type:ADD_FAVOURITES,
         movie:movie
     }
 }
 
-export function unfavourite ()
+export function unfavourite (movie) {
+    return {
+        type:UNFAVOURITE,
+        movie:movie
+    }
+}
