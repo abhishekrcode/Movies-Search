@@ -4,6 +4,7 @@ import movies from "../reducer";
 export const  ADD_MOVIES = 'ADD_MOVIES';
 export const ADD_FAVOURITES ='ADD_FAVOURITE';
 export const UNFAVOURITE ='UNFAVOURITE';
+export const SET_SHOW_FAVOURITES ='SET_SHOW_FAVOURITES';
 
 
 
@@ -28,3 +29,11 @@ export function unfavourite (movie) {
         movie:movie
     }
 }
+export function setShowFavourites (val){
+    return {
+        type:SET_SHOW_FAVOURITES,
+        val
+    }
+}
+
+
