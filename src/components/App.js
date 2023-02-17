@@ -10,7 +10,7 @@ class App extends React.Component {
 
   componentDidMount(){
     const { store} = this.props;
-
+    console.log("console",this.props)
     store.subscribe( () =>{
       this.forceUpdate();
     })
@@ -22,12 +22,13 @@ class App extends React.Component {
   // console.log("State",store.getState());
 
   store.dispatch(addMovies(data));
+  
   }
 
 
   isMovieFavourite = (movie) =>{
-    const {favourites} =this.props.store.getState();
-    const index = favourites.indexOf(movie);
+    const {movies} =this.props.store.getState();
+    const index = movies.favourites.indexOf(movie);
 
     if(index !== -1){
       return true;
@@ -42,13 +43,17 @@ class App extends React.Component {
 
   render(){
   // const movies = this.props.store.getState();
-  const { list ,favourites,showFavourites } = this.props.store.getState();
+  const {movies , search} =this.props.store.getState();
+  const { list ,favourites,showFavourites } = movies;
   console.log('RENDER',this.props.store.getState());
 
   const displayMovies = showFavourites ? favourites : list;
   return (
   <div className="App">
-    <Navbar />
+    <Navbar 
+      store={this.props.store}
+      search ={search}
+    />
     <div className="main">
       <div className="tabs">
       <div className={`tab ${showFavourites ? " " :'active-tabs'}`} onClick={() => this.onChangeTab(false)}>Movies</div>
