@@ -2,6 +2,7 @@ import React from "react";
 import { addFavourite, unfavourite } from "../action";
 
 
+
 class MovieCard extends React.Component {
     handleFavouriteClick = () => {
         const{movie} = this.props;
@@ -41,5 +42,7 @@ class MovieCard extends React.Component {
         );
     }
 }
+
+
 
 export default MovieCard;

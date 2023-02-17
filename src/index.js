@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createContext } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './components/App';
@@ -36,6 +36,20 @@ const thunk = ({dispatch,getState}) => (next) => (action) => {
 
 const store = createStore(rootReducer,applyMiddleware(logger,thunk));
 console.log(store);
+
+export const ContextStore = createContext();
+console.log('ContextStore',ContextStore);
+
+class Provider extends React.Component {
+  render(){
+    const {store} = this.props;
+    return (
+      <ContextStore.Provider value ={store}>
+        {this.props.children}
+      </ContextStore.Provider>
+    )
+  }
+}
 // console.log("Before dispatch",store.getState());
 
 // store.dispatch({
@@ -49,9 +63,9 @@ console.log(store);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App 
-      store = {store}
-     />
+  <Provider store = {store}>
+    <App />
+  </Provider>
   </React.StrictMode>
 );
 
